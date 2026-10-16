@@ -1,6 +1,6 @@
 # Practice 3: Kotlin Multiplatform Project Structure (Answers)
 
-Answers to all 25 questions in *Practice 3: KMP Project Structure* (Lectures 8–11).
+Answers to Sections 1–2 (Questions 1–13) of *Practice 3: KMP Project Structure* (Lectures 8–9).
 
 - **Theoretical** questions are answered here.
 - **Hands-on** questions are answered here **and** implemented in this repository. Every hands-on answer links to the real files and says how to check them.
@@ -9,7 +9,7 @@ Answers to all 25 questions in *Practice 3: KMP Project Structure* (Lectures 8�
 |---|---|
 | [`shared/`](shared) | Q5, Q11, Q13: KMP module for Android and iOS, laid out with clean architecture |
 | [`androidApp/`](androidApp) | Android app that uses `shared` (shows the shared code being used) |
-| [`structure-lab/`](structure-lab) | Q8, Q12, Q16, Q17, Q21: source-set and compilation exercises (JVM, JS, Linux, iOS) |
+| [`structure-lab/`](structure-lab) | Q7, Q8, Q12: source-set exercises (JVM, JS, iOS) |
 
 Versions: Kotlin 2.2.20, Gradle 8.14.3, AGP 8.11.1.
 
@@ -19,8 +19,6 @@ Versions: Kotlin 2.2.20, Gradle 8.14.3, AGP 8.11.1.
 
 - [Section 1: What Is Kotlin Multiplatform (Lecture 8)](#section-1--what-is-kotlin-multiplatform-lecture-8): Q1–Q6
 - [Section 2: KMP Project Structure Fundamentals (Lecture 9)](#section-2--kmp-project-structure-fundamentals-lecture-9): Q7–Q13
-- [Section 3: KMP Advanced Project Structure (Lecture 10)](#section-3--kmp-advanced-project-structure-lecture-10): Q14–Q21
-- [Section 4: Choosing a KMP Project Configuration (Lecture 11)](#section-4--choosing-a-kmp-project-configuration-lecture-11): Q22–Q25
 
 ---
 
@@ -158,7 +156,7 @@ commonMain, commonTest, iosArm64Main, iosArm64Test, jvmMain, jvmTest
 
 That is `commonMain` (the one predefined source set) plus one `…Main` source set per declared target, each with its `…Test` partner. Declaring a target attaches a "label" to every common file.
 
-> Observation: with a **single** Apple target, Kotlin 2.2.20 did **not** create `iosMain`/`appleMain`/`nativeMain`. The default hierarchy template only creates those intermediate source sets once they have something to group (see Q17, where a second iOS target is added). In the Project view a source set only appears as a folder once `src/<name>/kotlin` exists.
+> Observation: with a **single** Apple target, Kotlin 2.2.20 did **not** create `iosMain`/`appleMain`/`nativeMain`. The default hierarchy template only creates those intermediate source sets once they have something to group (for example, a second iOS target such as `iosSimulatorArm64()`). In the Project view a source set only appears as a folder once `src/<name>/kotlin` exists.
 
 ### Question 9 (Theoretical): What makes a source set
 
@@ -285,9 +283,6 @@ class GreetingTest {
 ./gradlew :shared:iosSimulatorArm64Test    # iOS simulator (macOS)
 ```
 
-Result: **passed**. The full shared suite, 6 tests (`GreetingTest`, `GetWelcomeMessageUseCaseTest`, `DevicePlatformRepositoryTest`, `WelcomePresenterTest`, and 2 tests in `AndroidPlatformTest`), ran green with 0 failures.
+Result: **passed** in CI on both platforms. On Android, `testDebugUnitTest` runs the 4 common test classes (`GreetingTest`, `GetWelcomeMessageUseCaseTest`, `DevicePlatformRepositoryTest`, `WelcomePresenterTest`) plus `AndroidPlatformTest`. On iOS, `iosSimulatorArm64Test` runs the same 4 common classes plus `IOSPlatformTest`. There were 0 failures.
 
 **Main/Test pairing:** every `…Main` source set has a `…Test` partner that is wired to it automatically. `commonTest` sees `commonMain` without any extra configuration and compiles to every target, so one test runs on every platform.
-
----
-

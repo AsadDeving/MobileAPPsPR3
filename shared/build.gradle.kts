@@ -12,7 +12,7 @@ kotlin {
         }
     }
 
-    // Umbrella iOS framework: one binary for the whole shared module (Lecture 11).
+    // One iOS framework ("Shared") for both the device and the simulator.
     listOf(iosArm64(), iosSimulatorArm64()).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "Shared"

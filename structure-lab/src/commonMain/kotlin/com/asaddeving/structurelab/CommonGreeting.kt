@@ -1,4 +1,4 @@
 package com.asaddeving.structurelab
 
-/** Compiled for every declared target: jvm, js, linuxX64, iosArm64 and iosSimulatorArm64. */
+/** Compiled for every declared target: jvm, iosArm64 and js. */
 fun commonGreeting(): String = "Hello from commonMain"

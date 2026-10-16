@@ -1,8 +1,8 @@
 # KMP Project Structure: Practice 3
 
-Kotlin Multiplatform practice project for **Lectures 8–11** (What is KMP · Project structure fundamentals · Advanced project structure · Project configuration).
+Kotlin Multiplatform practice project for **Lectures 8–9** (What is KMP · Project structure fundamentals).
 
-📄 **All 25 questions are answered in [`ANSWERS.md`](ANSWERS.md).** Hands-on answers link to the code in this repository.
+📄 **Sections 1–2 (Questions 1–13) are answered in [`ANSWERS.md`](ANSWERS.md).** Hands-on answers link to the code in this repository.
 
 ## Modules
 
@@ -10,7 +10,7 @@ Kotlin Multiplatform practice project for **Lectures 8–11** (What is KMP · Pr
 .
 ├── shared/          KMP library: Android + iOS (Q5, Q11, Q13)
 ├── androidApp/      Jetpack Compose app that uses `shared`
-├── structure-lab/   Source-set lab: JVM, JS, Linux, iOS (Q8, Q12, Q16, Q17, Q21)
+├── structure-lab/   Source-set lab: JVM, JS, iOS (Q7, Q8, Q12)
 └── gradle/libs.versions.toml   single version catalog
 ```
 
@@ -49,9 +49,8 @@ Requirements: JDK 17+, the Android SDK (Android Studio sets it up), and macOS + 
 ./gradlew :shared:testDebugUnitTest            # commonTest + androidUnitTest
 ./gradlew :shared:iosSimulatorArm64Test        # commonTest + iosTest (macOS)
 ./gradlew :androidApp:assembleDebug            # Android app
-./gradlew :structure-lab:printSourceSets       # Q8 / Q12 / Q17
-./gradlew :structure-lab:printJvmCompilations  # Q21
-./gradlew :structure-lab:jvmTest :structure-lab:compileKotlinJs   # Q16
+./gradlew :structure-lab:printSourceSets       # Q8 / Q12
+./gradlew :structure-lab:jvmTest :structure-lab:compileKotlinJs   # Q7 / Q12
 ```
 
-GitHub Actions ([`.github/workflows/build.yml`](.github/workflows/build.yml)) runs all of these on Ubuntu (Android, JVM, JS, Linux) and macOS (iOS).
+GitHub Actions ([`.github/workflows/build.yml`](.github/workflows/build.yml)) runs all of these on Ubuntu (Android, JVM, JS) and macOS (iOS).

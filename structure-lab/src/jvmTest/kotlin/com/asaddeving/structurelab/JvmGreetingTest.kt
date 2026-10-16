@@ -6,8 +6,8 @@ import kotlin.test.assertTrue
 
 class JvmGreetingTest {
     @Test
-    fun jvmSeesTheJvmAndJsSourceSet() {
-        assertEquals("Shared by JVM and JS only (JVM)", jvmGreeting())
+    fun jvmMainSeesCommonMain() {
+        assertEquals("Hello from commonMain (JVM)", jvmGreeting())
     }
 
     @Test

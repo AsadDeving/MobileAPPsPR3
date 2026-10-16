@@ -7,7 +7,7 @@ on:
 
 jobs:
   android-and-jvm:
-    name: Android, JVM, JS and Linux
+    name: Android, JVM and JS
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,14 +20,12 @@ jobs:
         run: ./gradlew :shared:testDebugUnitTest
       - name: Android app
         run: ./gradlew :androidApp:assembleDebug
-      - name: Structure lab (Q8, Q12, Q16, Q17, Q21)
+      - name: Structure lab (Q7, Q8, Q12)
         run: >
           ./gradlew
           :structure-lab:printSourceSets
-          :structure-lab:printJvmCompilations
           :structure-lab:jvmTest
           :structure-lab:compileKotlinJs
-          :structure-lab:linuxX64Test
 
   ios:
     name: iOS
@@ -46,4 +44,3 @@ jobs:
           ./gradlew
           :shared:linkDebugFrameworkIosArm64
           :structure-lab:compileKotlinIosArm64
-          :structure-lab:compileKotlinIosSimulatorArm64
